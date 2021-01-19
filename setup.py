@@ -13,8 +13,6 @@ from os.path import join
 from os.path import relpath
 from os.path import splitext
 
-from pip.req import parse_requirements
-
 from setuptools import find_packages
 from setuptools import setup
 
@@ -26,6 +24,12 @@ def read(*names, **kwargs):
         join(dirname(__file__), *names),
         encoding=kwargs.get('encoding', 'utf8')
     ).read()
+
+# Parse req. function to replace function present in pip.req
+def parse_requirements(filename):
+    """ load requirements from a pip requirements file """
+    lineiter = (line.strip() for line in open(filename))
+    return [line for line in lineiter if line and not line.startswith("#")]
 
 # parse_requirements() returns generator of pip.req.InstallRequirement objects
 requirements = [str(ir.req) for ir in parse_requirements('./requirements.txt', session=False)]
