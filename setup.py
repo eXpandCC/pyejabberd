@@ -31,9 +31,7 @@ def parse_requirements(filename):
     lineiter = (line.strip() for line in open(filename))
     return [line for line in lineiter if line and not line.startswith("#")]
 
-# parse_requirements() returns generator of pip.req.InstallRequirement objects
-requirements = [str(ir.req) for ir in parse_requirements('./requirements.txt', session=False)]
-# requirements_test = [str(ir.req) for ir in parse_requirements('./requirements-test.txt', session=False)]
+requirements = parse_requirements('./requirements.txt')
 
 setup(
     name="pyejabberd",
