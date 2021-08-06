@@ -16,7 +16,7 @@ from os.path import splitext
 from setuptools import find_packages
 from setuptools import setup
 
-__version__ = '0.2.11'
+__version__ = '0.2.11-expand'
 
 
 def read(*names, **kwargs):
